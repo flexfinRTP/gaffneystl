@@ -1,19 +1,33 @@
 import Link from 'next/link'
-import styles from '../styles/Header.module.css'
+import { AppBar, Toolbar, Typography, Button, Container, Box } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 export default function Header() {
+  const theme = useTheme()
+
   return (
-    <header className={styles.header}>
-      <nav>
-        <Link href="/">
-          <a className={styles.logo}>JD</a>
-        </Link>
-        <ul className={styles.navItems}>
-          <li><Link href="#projects"><a>Projects</a></Link></li>
-          <li><Link href="#about"><a>About</a></Link></li>
-          <li><Link href="#contact"><a>Contact</a></Link></li>
-        </ul>
-      </nav>
-    </header>
+    <AppBar position="static" sx={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
+      <Container>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
+          <Typography variant="h6" sx={{ fontWeight: 700, color: theme.palette.primary.main }}>
+            River Consulting
+          </Typography>
+          <Box>
+          <Button color="inherit" sx={{ ml: 2 }}>
+              <Link href="about">About</Link>
+            </Button>
+            <Button color="inherit" sx={{ ml: 2 }}>
+              <Link href="services">Services</Link>
+            </Button>
+            <Button color="inherit" sx={{ ml: 2 }}>
+              <Link href="projects">Expertise</Link>
+            </Button>
+            <Button color="primary" variant="contained" sx={{ ml: 2 }}>
+              <Link href="contact">Contact</Link>
+            </Button>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
   )
 }

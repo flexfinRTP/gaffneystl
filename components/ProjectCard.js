@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Card, CardContent, Typography, Button } from '@mui/material/'
-import styles from '../styles/ProjectCard.module.css'
+import styles from '../styles/Home.module.css'
 
 export default function ProjectCard({ project }) {
   const [isHovered, setIsHovered] = useState(false)

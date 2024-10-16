@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion'
-import { Typography, Grid, Card, CardContent, CardMedia, Button } from '@mui/material'
+import { Typography, Grid, Card, CardContent, CardMedia, Button, Box } from '@mui/material';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const projects = [
   {
@@ -69,50 +70,61 @@ const projects = [
     link: "#"
   },
   {
-    title: "Paper Wallet Generator (ETH)",
-    description: "Developed during Cornell IC3 SummerCamp 21.",
-    image: "/images/paper-wallet.jpg",
-    link: "#"
+    title: "Bulk Paper Wallet Generator (ETH)",
+    description: "Generate multiple ETH wallets in seconds. Use for vanity purposes or load dust for Developed during Cornell IC3 SummerCamp 21.",
+    image: "/ethwallet_gen.png",
+    link: "https://github.com/flexfinRTP/ethwallet-gen-stripped"
   }
 ]
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="py-20">
-      <Typography variant="h2" className="text-4xl font-bold mb-12 text-center text-white">
-        Blockchain Projects Showcase
+    <Box component="section" sx={{ py: 8 }}>
+      <Typography variant="h2" className="text-3xl md:text-4xl font-bold mb-8 text-center">
+        Featured Projects
       </Typography>
       <Grid container spacing={4}>
         {projects.map((project, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
+          <Grid item key={project.title} xs={12} md={4}>
             <motion.div
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="h-full flex flex-col bg-gray-800 text-white">
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={project.image}
-                  alt={project.title}
-                />
+              <Card className="h-full flex flex-col">
+                <CardMedia sx={{ height: 200, position: 'relative' }}>
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </CardMedia>
                 <CardContent className="flex-grow">
-                  <Typography gutterBottom variant="h5" component="div" className="text-blue-400">
+                  <Typography gutterBottom variant="h5" component="h3" className="font-bold">
                     {project.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" className="text-gray-300">
+                  <Typography variant="body2" color="text.secondary">
                     {project.description}
                   </Typography>
                 </CardContent>
-                <Button size="small" color="primary" href={project.link} target="_blank" rel="noopener noreferrer" className="mx-2 mb-2">
-                  Learn More
-                </Button>
+                <Box sx={{ p: 2 }}>
+                  <Button 
+                    variant="contained" 
+                    color="primary" 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    fullWidth
+                  >
+                    Learn More
+                  </Button>
+                </Box>
               </Card>
             </motion.div>
           </Grid>
         ))}
       </Grid>
-    </section>
-  )
+    </Box>
+  );
 }

@@ -1,15 +1,18 @@
+// pages/index.js
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Layout from "../components/Layout";
 import HeroSection from "../components/HeroSection";
+import ServicesSection from "../components/ServicesSection";
+// import TestimonialSection from "../components/TestimonialSection";
+import CTASection from "../components/CTASection";
 import ProjectsSection from "../components/ProjectsSection";
-import ExperienceSection from "../components/ExperienceSection";
-import CertificationsSection from "../components/CertificationsSection";
+import FAQSection from "../components/FAQSection";
+import BlogSection from "../components/BlogSection";
 import { motion } from "framer-motion";
-import ProjectCard from "../components/ProjectCard";
-import SocialIcons from "../components/SocialIcons";
-import { projects } from "../utils/projects";
-import styles from "../styles/Home.module.css";
+import dynamic from 'next/dynamic';
+
+// const LiveChat = dynamic(() => import('../components/LiveChat'), { ssr: false });
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,45 +24,44 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>John Doe - Web3 Developer & Product Manager</title>
+        <title>John Doe - Web3 & Blockchain Consulting</title>
         <meta
           name="description"
-          content="Portfolio of John Doe, showcasing cutting-edge web3 projects and product management expertise."
+          content="Transform your business with expert Web3 and blockchain consulting. Book a call to start your journey into decentralized solutions."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              "name": "Gaffney Web3 Consulting",
+              "description": "Expert Web3 and blockchain consulting services",
+              "url": "https://www.gaffneystl.com",
+              "logo": "https://www.gaffneystl.com/logo.png",
+              "sameAs": [
+                "https://www.linkedin.com/in/gaffney311",
+                "https://twitter.com/gaffney311",
+                "https://github.com/flexfinrtp"
+              ]
+            }
+          `}
+        </script>
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>John Doe</h1>
-        <p className={styles.description}>Web3 Developer & Product Manager</p>
-
-        <SocialIcons />
-
-        <section className={styles.projects}>
-          <h2>Featured Projects</h2>
-          <div className={styles.projectGrid}>
-            {projects.map((project, index) => (
-              <ProjectCard key={index} project={project} />
-            ))}
-          </div>
-        </section>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isLoaded ? 1 : 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <HeroSection />
-          <ProjectsSection />
-          {/* <ExperienceSection /> */}
-          <CertificationsSection />
-        </motion.div>
-
-        <section className={styles.awards}>
-          <h2>Achievements</h2>
-          <p>Multiple Hackathon Winner</p>
-        </section>
-      </main>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoaded ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <HeroSection />
+        <ServicesSection />
+        {/* <ProjectsSection /> */}
+        {/* <TestimonialSection /> */}
+        <FAQSection />
+        <BlogSection />
+        <CTASection />
+      </motion.div>
+      {/* <LiveChat /> */}
     </Layout>
   );
 }
