@@ -15,14 +15,14 @@ export default function HeroSection() {
             transition={{ duration: 0.5 }}
           >
             <Typography variant="h1" className="bg-gradient-text text-4xl md:text-5xl lg:text-6xl font-bold mb-4" gutterBottom>
-              Unlock the Power of Web3
+              Unlock Revenue Streams with Web3
             </Typography>
             <Typography variant="h5" color="textSecondary" paragraph>
-              Transform your business with expert blockchain consulting. Harness the potential of decentralized technologies to stay ahead in the digital age.
+              Expert consulting to transform your operations, enhance security, and unlock new revenue streams with Web3 technology.
             </Typography>
             <Box sx={{ mt: 4 }}>
-              <CTAButton href="/contact">Start Your Web3 Journey</CTAButton>
-              <Button variant="outlined" color="primary" size="large" sx={{ ml: 2 }}>
+              <CTAButton href="/contact">Let's Talk</CTAButton>
+              <Button href="/services" variant="outlined" color="primary" size="large" sx={{ ml: 2 }}>
                 Learn More
               </Button>
             </Box>

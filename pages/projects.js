@@ -21,16 +21,16 @@ export default function Projects() {
   return (
     <Layout>
       <Head>
-        <title>John Doe - Web3 Developer & Product Manager</title>
+        <title>Justin Gaffney - Web3 Developer & Product Manager</title>
         <meta
           name="description"
-          content="Portfolio of John Doe, showcasing cutting-edge web3 projects and product management expertise."
+          content="Portfolio of Justin Gaffney, showcasing cutting-edge web3 projects and product management expertise."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>John Doe</h1>
+        <h1 className={styles.title}>Justin Gaffney</h1>
         <p className={styles.description}>Web3 Developer & Product Manager</p>
 
         <SocialIcons />

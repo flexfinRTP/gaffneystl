@@ -50,10 +50,10 @@ export default function About() {
   return (
     <Layout>
       <Head>
-        <title>About John Doe - Blockchain Architect & Web3 Developer</title>
+        <title>About Justin Gaffney - Blockchain Architect & Web3 Developer</title>
         <meta
           name="description"
-          content="Learn about John Doe, an experienced blockchain architect and Web3 developer with a passion for transforming businesses through decentralized technologies."
+          content="Learn about Justin Gaffney, an experienced blockchain architect and Web3 developer with a passion for transforming businesses through decentralized technologies."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -70,7 +70,7 @@ export default function About() {
                 <Box display="flex" justifyContent="center">
                   <ProfileImage
                     src="/images/john-doe-profile.jpg"
-                    alt="John Doe"
+                    alt="Justin Gaffney"
                     width={300}
                     height={300}
                     priority
@@ -80,7 +80,7 @@ export default function About() {
               <Grid item xs={12} md={8}>
                 <StyledPaper elevation={0}>
                   <Typography variant="h2" gutterBottom>
-                    John Doe
+                    Justin Gaffney
                   </Typography>
                   <Typography variant="h5" color="textSecondary" gutterBottom>
                     Blockchain Architect & Web3 Developer
@@ -123,16 +123,13 @@ export default function About() {
                 Achievements
               </Typography>
               <Typography variant="body1" paragraph>
-                • Led the development of a DeFi platform that now manages over $100M in total value locked (TVL)
+                • Led the development of a DeFi platform that now manages over $1M in total value locked (TVL) on Bitcoin Testnet
               </Typography>
               <Typography variant="body1" paragraph>
-                • Winner of multiple blockchain hackathons, including ETHGlobal and Chainlink Hackathon
+                • Winner of multiple blockchain hackathons, including ZenCon, ETHGlobal, and Bitcoin Olympics.
               </Typography>
               <Typography variant="body1" paragraph>
                 • Published author on blockchain technology and its applications in enterprise systems
-              </Typography>
-              <Typography variant="body1">
-                • Regular speaker at Web3 conferences and blockchain meetups
               </Typography>
             </StyledPaper>
           </Box>
@@ -145,7 +142,7 @@ export default function About() {
               <SocialButton
                 variant="contained"
                 color="primary"
-                href="https://linkedin.com/in/johndoe"
+                href="https://linkedin.com/in/gaffney311"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -154,7 +151,7 @@ export default function About() {
               <SocialButton
                 variant="contained"
                 color="primary"
-                href="https://github.com/johndoe"
+                href="https://github.com/flexfinrtp"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -163,7 +160,7 @@ export default function About() {
               <SocialButton
                 variant="contained"
                 color="primary"
-                href="https://twitter.com/johndoe"
+                href="https://twitter.com/gaffney311"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -173,10 +170,11 @@ export default function About() {
             <Button
               variant="contained"
               color="secondary"
-              startIcon={<DownloadIcon />}
+              // startIcon={<DownloadIcon />}
               sx={{ mt: 3 }}
+              href="contact"
             >
-              Download Resume
+              Schedule A Call
             </Button>
           </Box>
         </motion.div>

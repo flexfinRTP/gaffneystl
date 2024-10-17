@@ -200,10 +200,10 @@ const Footer = () => {
     setIsSuccess(false);
 
     send(
-      "YOUR_EMAILJS_SERVICE_ID",
-      "YOUR_EMAILJS_TEMPLATE_ID",
+      "service_itmoea9",
+      "template_7nm6yt5",
       { email: email },
-      "YOUR_EMAILJS_USER_ID"
+      "LjgOoqNPpg23JpnH0"
     ).then(
       (response) => {
         console.log("SUCCESS!", response.status, response.text);
@@ -236,7 +236,7 @@ const Footer = () => {
               <Logo whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Image
                   src="/logo.png"
-                  alt="GaffneySTL Consulting"
+                  alt="Gaffney Consulting"
                   width={200}
                   height={60}
                 />
@@ -277,7 +277,7 @@ const Footer = () => {
           >
             <FooterTitle>Services</FooterTitle>
             <FooterList>
-              {["Web3 Strategy", "Blockchain Integration", "Smart Contract Development", "DeFi Consulting", "NFT Solutions"].map(
+              {["Web3 Strategy Consulting", "Smart Contract Development", "Blockchain Education & Training", "Web3 Integration for Web2 Systems", "Enterprise Blockchain Solutions", "Tokenomics Design" ].map(
                 (item, index) => (
                   <FooterItem
                     key={item}
@@ -298,7 +298,7 @@ const Footer = () => {
             transition={{ delay: 0.5 }}
           >
             <FooterTitle>Stay Informed</FooterTitle>
-            <p>Subscribe to receive Web3 insights and updates.</p>
+            <p>Subscribe to receive Web3 insights and consulting promotions.</p>
             <Newsletter>
               <form onSubmit={handleSubmit}>
                 <NewsletterInput
@@ -336,7 +336,7 @@ const Footer = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          © {new Date().getFullYear()} Gaffney STL Consulting. All rights reserved.
+          © {new Date().getFullYear()} Gaffney Consulting. All rights reserved.
         </Copyright>
       </div>
     </FooterWrapper>

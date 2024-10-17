@@ -4,31 +4,42 @@ import Head from "next/head";
 import Layout from "../components/Layout";
 import HeroSection from "../components/HeroSection";
 import ServicesSection from "../components/ServicesSection";
-// import TestimonialSection from "../components/TestimonialSection";
 import CTASection from "../components/CTASection";
 import ProjectsSection from "../components/ProjectsSection";
 import FAQSection from "../components/FAQSection";
 import BlogSection from "../components/BlogSection";
 import { motion } from "framer-motion";
-import dynamic from 'next/dynamic';
-
-// const LiveChat = dynamic(() => import('../components/LiveChat'), { ssr: false });
+import ValueProposition from "../components/ValueProposition";
+import ExitIntentPopup from "../components/ExitIntentPopup";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showExitPopup, setShowExitPopup] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
+    const hasVisitedBefore = localStorage.getItem('hasVisited');
+    if (!hasVisitedBefore) {
+      const exitIntent = (e) => {
+        if (e.clientY <= 0) {
+          setShowExitPopup(true);
+          document.removeEventListener('mouseleave', exitIntent);
+        }
+      };
+      document.addEventListener('mouseleave', exitIntent);
+      return () => document.removeEventListener('mouseleave', exitIntent);
+    }
   }, []);
 
   return (
     <Layout>
       <Head>
-        <title>John Doe - Web3 & Blockchain Consulting</title>
+        <title>Justin Gaffney - Web3 & Blockchain Consulting</title>
         <meta
           name="description"
           content="Transform your business with expert Web3 and blockchain consulting. Book a call to start your journey into decentralized solutions."
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <script type="application/ld+json">
           {`
             {
@@ -53,15 +64,14 @@ export default function Home() {
         animate={{ opacity: isLoaded ? 1 : 0 }}
         transition={{ duration: 0.5 }}
       >
+        <ValueProposition />
         <HeroSection />
         <ServicesSection />
-        {/* <ProjectsSection /> */}
-        {/* <TestimonialSection /> */}
         <FAQSection />
         <BlogSection />
         <CTASection />
       </motion.div>
-      {/* <LiveChat /> */}
+      {showExitPopup && <ExitIntentPopup onClose={() => setShowExitPopup(false)} />}
     </Layout>
   );
 }

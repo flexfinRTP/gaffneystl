@@ -1,4 +1,4 @@
-// components/ServiceSection.js
+// components/ServicesSection.js
 import { Typography, Grid, Card, CardContent, CardMedia, Box, Chip } from '@mui/material';
 import { motion } from 'framer-motion';
 import CTAButton from './CTAButton';
@@ -41,6 +41,7 @@ export default function ServiceSection() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              style={{ height: '100%' }}
             >
               <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }} className="card-hover">
                 <CardMedia sx={{ height: 200, position: 'relative' }}>
@@ -51,11 +52,11 @@ export default function ServiceSection() {
                     objectFit="cover"
                   />
                 </CardMedia>
-                <CardContent sx={{ flexGrow: 1 }}>
+                <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                   <Typography gutterBottom variant="h5" component="h3" className="font-bold">
                     {service.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" paragraph>
+                  <Typography variant="body2" color="text.secondary" paragraph sx={{ flexGrow: 1 }}>
                     {service.description}
                   </Typography>
                   <Box sx={{ mt: 2, mb: 2 }}>

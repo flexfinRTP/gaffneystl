@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Head from "next/head";
+import Link from "next/link";
 import Layout from "../components/Layout";
 import { 
   Typography, 
@@ -22,6 +23,7 @@ import { styled } from '@mui/material/styles';
 import { motion } from "framer-motion";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import FreeDAppOfferSection from '../components/FreeDAppOfferSection';
 
 const ServiceCard = styled(Card)(({ theme }) => ({
   height: '100%',
@@ -49,7 +51,8 @@ const services = [
       "Integration roadmap development",
       "Use case identification",
       "ROI projection"
-    ]
+    ],
+    slug: "blockchain-strategy-consulting"
   },
   {
     title: "Smart Contract Development and Auditing",
@@ -59,7 +62,8 @@ const services = [
       "Security audits",
       "Gas optimization",
       "Integration support"
-    ]
+    ],
+    slug: "smart-contract-development-and-auditing"
   },
   {
     title: "Web3 Integration for Web2 Apps",
@@ -69,7 +73,8 @@ const services = [
       "Token gating setup",
       "Blockchain-based authentication",
       "Decentralized storage integration"
-    ]
+    ],
+    slug: "web3-integration-for-web2-apps"
   },
   {
     title: "Blockchain Education and Training",
@@ -79,7 +84,8 @@ const services = [
       "Interactive workshops",
       "Hands-on project guidance",
       "Ongoing support and resources"
-    ]
+    ],
+    slug: "blockchain-education-and-training"
   },
   {
     title: "Tokenomics Design and Consultation",
@@ -89,7 +95,8 @@ const services = [
       "Distribution strategy planning",
       "Governance model design",
       "Economic simulations"
-    ]
+    ],
+    slug: "tokenomics-design-and-consultation"
   },
   {
     title: "Advanced Blockchain Solutions",
@@ -99,33 +106,40 @@ const services = [
       "NFT platform development",
       "DAO setup and governance",
       "Cross-chain interoperability solutions"
-    ]
+    ],
+    slug: "advanced-blockchain-solutions"
   }
 ];
 
 const tiers = [
   {
     title: 'Basic',
-    price: '$2,000',
+    price: '$3,000',
     description: 'For small businesses starting their blockchain journey',
     features: [
       'Initial blockchain strategy consultation',
+      'Free basic dApp prototype or website',
       'Basic smart contract development',
       'Web3 integration assessment',
-      '2 hours of blockchain education'
+      '2 hours of blockchain education',
+      'Monthly maintenance and support'
     ],
+    maintenance: '$250/month'
   },
   {
     title: 'Professional',
-    price: '$5,000',
+    price: '$7,500',
     description: 'For growing companies ready to fully embrace blockchain',
     features: [
       'Comprehensive blockchain strategy',
       'Advanced smart contract development and audit',
+      'Custom dApp or website development',
       'Full Web3 integration for one application',
       '8 hours of tailored blockchain education',
-      'Basic tokenomics consultation'
+      'Basic tokenomics consultation',
+      'Priority maintenance and support'
     ],
+    maintenance: '$2,500/month'
   },
   {
     title: 'Enterprise',
@@ -134,11 +148,14 @@ const tiers = [
     features: [
       'End-to-end blockchain strategy and implementation',
       'Multiple smart contract development and audits',
+      'Enterprise-grade dApp or website development',
       'Complete Web3 ecosystem integration',
       'Ongoing blockchain education and support',
       'Comprehensive tokenomics design',
-      'Advanced blockchain solutions (DeFi, NFT, DAO)'
+      'Advanced blockchain solutions (DeFi, NFT, DAO)',
+      '24/7 dedicated support and maintenance'
     ],
+    maintenance: 'Custom'
   },
 ];
 
@@ -154,7 +171,7 @@ export default function Services() {
   return (
     <Layout>
       <Head>
-        <title>Blockchain Consulting Services - John Doe</title>
+        <title>Blockchain Consulting Services - Justin Gaffney</title>
         <meta
           name="description"
           content="Expert blockchain consulting services including strategy, development, integration, and education. Transform your business with Web3 solutions."
@@ -169,10 +186,16 @@ export default function Services() {
         >
           <Box sx={{ my: 4 }}>
             <Typography variant="h1" component="h1" align="center" gutterBottom>
-              Blockchain Consulting Services
+              Consulting Services
             </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              Empower your business with cutting-edge blockchain solutions
+            <Typography
+              variant="h5"
+              align="center"
+              color="textSecondary"
+              paragraph
+            >
+              Web3 Education, Integrated blockchain solutions, and custom Smart
+              Contract development
             </Typography>
           </Box>
 
@@ -184,8 +207,8 @@ export default function Services() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <ServiceCard>
-                    <CardContent>
+                  <ServiceCard sx={{ height: '100%' }}>
+                    <CardContent sx={{ flexGrow: 1 }}>
                       <Typography variant="h5" component="h2" gutterBottom>
                         {service.title}
                       </Typography>
@@ -204,20 +227,24 @@ export default function Services() {
                       </List>
                     </CardContent>
                     <CardActions>
-                      <CTAButton 
-                        variant="outlined" 
-                        color="primary" 
-                        endIcon={<ArrowForwardIcon />}
-                        fullWidth
-                      >
-                        Learn More
-                      </CTAButton>
+                      <Link href={`/services/${service.slug}`} passHref>
+                        <CTAButton 
+                          variant="outlined" 
+                          color="primary" 
+                          endIcon={<ArrowForwardIcon />}
+                          fullWidth
+                        >
+                          Learn More
+                        </CTAButton>
+                      </Link>
                     </CardActions>
                   </ServiceCard>
                 </motion.div>
               </Grid>
             ))}
           </Grid>
+
+          <FreeDAppOfferSection />
 
           <Box sx={{ my: 8 }}>
             <Typography variant="h2" align="center" gutterBottom>
@@ -243,6 +270,11 @@ export default function Services() {
                       <Typography variant="h3" align="center" color="primary">
                         {tier.price}
                       </Typography>
+                      {tier.maintenance && (
+                        <Typography variant="subtitle1" align="center" color="textSecondary">
+                          Maintenance: {tier.maintenance}
+                        </Typography>
+                      )}
                       <Typography variant="subtitle1" align="center" paragraph>
                         {tier.description}
                       </Typography>
@@ -259,14 +291,16 @@ export default function Services() {
                       </List>
                     </CardContent>
                     <CardActions>
-                      <CTAButton 
-                        variant="contained" 
-                        color="primary" 
-                        fullWidth
-                        endIcon={<ArrowForwardIcon />}
-                      >
-                        Get Started
-                      </CTAButton>
+                      <Link href="/how-it-works" passHref>
+                        <CTAButton 
+                          variant="contained" 
+                          color="primary" 
+                          fullWidth
+                          endIcon={<ArrowForwardIcon />}
+                        >
+                          Get Started
+                        </CTAButton>
+                      </Link>
                     </CardActions>
                   </Card>
                 </Grid>
@@ -281,14 +315,16 @@ export default function Services() {
             <Typography variant="h5" color="textSecondary" paragraph>
               Book your free 30-minute consultation today and discover how blockchain can revolutionize your operations.
             </Typography>
-            <CTAButton 
-              variant="contained" 
-              color="secondary" 
-              size="large"
-              endIcon={<ArrowForwardIcon />}
-            >
-              Schedule Free Consultation
-            </CTAButton>
+            <Link href="/contact" passHref>
+              <CTAButton 
+                variant="contained" 
+                color="secondary" 
+                size="large"
+                endIcon={<ArrowForwardIcon />}
+              >
+                Schedule Free Consultation
+              </CTAButton>
+            </Link>
           </Box>
         </motion.div>
       </Container>

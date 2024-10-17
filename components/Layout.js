@@ -7,14 +7,14 @@ import CssBaseline from '@mui/material/CssBaseline'
 import theme from '../styles/theme'
 import { Container, Box } from '@mui/material'
 import ErrorBoundary from './ErrorBoundary'
+import Breadcrumbs from './Breadcrumbs'
 
 export default function Layout({ children }) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Head>
-        <title>John Doe - Web3 & Blockchain Consulting</title>
-        <meta name="description" content="Expert Web3 and blockchain consulting services. Transform your business with cutting-edge decentralized solutions." />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
@@ -23,6 +23,7 @@ export default function Layout({ children }) {
       <ErrorBoundary>
         <Box className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 to-blue-900">
           <Header />
+          <Breadcrumbs />
           <main className="flex-grow">
             <Container maxWidth="lg" className="py-8">
               {children}
