@@ -5,23 +5,23 @@ import Link from 'next/link';
 
 const blogPosts = [
   {
-    title: "The Future of DeFi: Trends to Watch",
-    excerpt: "Explore the emerging trends in Decentralized Finance (DeFi) and how they're shaping the future of the financial industry.",
+    title: "Coming Soon",
+    excerpt: "",
     image: "/images/defi-trends.jpg",
     slug: "future-of-defi-trends"
   },
-  {
-    title: "Blockchain in Supply Chain: A Game Changer",
-    excerpt: "Discover how blockchain technology is revolutionizing supply chain management, enhancing transparency and efficiency.",
-    image: "/images/blockchain-supply-chain.jpg",
-    slug: "blockchain-supply-chain"
-  },
-  {
-    title: "NFTs Beyond Art: Exploring New Use Cases",
-    excerpt: "Delve into the world of Non-Fungible Tokens (NFTs) and their potential applications beyond digital art.",
-    image: "/images/nft-use-cases.jpg",
-    slug: "nfts-beyond-art"
-  }
+  // {
+  //   title: "Blockchain in Supply Chain: A Game Changer",
+  //   excerpt: "Discover how blockchain technology is revolutionizing supply chain management, enhancing transparency and efficiency.",
+  //   image: "/images/blockchain-supply-chain.jpg",
+  //   slug: "blockchain-supply-chain"
+  // },
+  // {
+  //   title: "NFTs Beyond Art: Exploring New Use Cases",
+  //   excerpt: "Delve into the world of Non-Fungible Tokens (NFTs) and their potential applications beyond digital art.",
+  //   image: "/images/nft-use-cases.jpg",
+  //   slug: "nfts-beyond-art"
+  // }
 ];
 
 export default function BlogSection() {
@@ -49,7 +49,8 @@ export default function BlogSection() {
                 <Typography variant="body2" color="text.secondary" paragraph>
                   {post.excerpt}
                 </Typography>
-                <Link href={`/blog/${post.slug}`} passHref>
+                {/* <Link href={`/blog/${post.slug}`} passHref> */}
+                <Link href={`/`} passHref>
                   <Button variant="text" color="primary">Read More</Button>
                 </Link>
               </CardContent>
@@ -58,7 +59,8 @@ export default function BlogSection() {
         ))}
       </Grid>
       <Box sx={{ mt: 4, textAlign: 'center' }}>
-        <Link href="/blog" passHref>
+        {/* <Link href="/blog" passHref> */}
+        <Link href={`/`} passHref>
           <Button variant="contained" color="primary">View All Posts</Button>
         </Link>
       </Box>

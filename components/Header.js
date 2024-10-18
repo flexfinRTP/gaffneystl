@@ -1,10 +1,21 @@
 // components/Header.js
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { AppBar, Toolbar, Typography, Button, Container, Box, IconButton, Menu, MenuItem, useScrollTrigger } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import MenuIcon from '@mui/icons-material/Menu';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Container,
+  Box,
+  IconButton,
+  Menu,
+  MenuItem,
+  useScrollTrigger,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import MenuIcon from "@mui/icons-material/Menu";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const theme = useTheme();
@@ -23,20 +34,27 @@ export default function Header() {
   };
 
   return (
-    <AppBar 
-      position="sticky" 
-      sx={{ 
-        backgroundColor: trigger ? 'rgba(26, 26, 46, 0.9)' : 'transparent',
-        transition: 'background-color 0.3s ease',
-        boxShadow: trigger ? 1 : 'none'
+    <AppBar
+      position="sticky"
+      sx={{
+        backgroundColor: trigger ? "rgba(26, 26, 46, 0.9)" : "transparent",
+        transition: "background-color 0.3s ease",
+        boxShadow: trigger ? 1 : "none",
       }}
     >
       <Container>
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Typography variant="h6" sx={{ fontWeight: 700, color: theme.palette.primary.main }}>
-            Gaffney Consulting
-          </Typography>
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <Link href="/">
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: 700, color: theme.palette.primary.main }}
+            >
+              Gaffney Consulting
+            </Typography>
+          </Link>
+          <Box
+            sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
+          >
             <Button color="inherit" sx={{ ml: 2 }}>
               <Link href="/about">About</Link>
             </Button>
@@ -65,7 +83,7 @@ export default function Header() {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ display: { md: 'none' } }}
+            sx={{ display: { md: "none" } }}
             onClick={handleMenu}
           >
             <MenuIcon />
@@ -74,21 +92,29 @@ export default function Header() {
             id="menu-appbar"
             anchorEl={anchorEl}
             anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
+              vertical: "top",
+              horizontal: "right",
             }}
             keepMounted
             transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
+              vertical: "top",
+              horizontal: "right",
             }}
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}><Link href="/about">About</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/services">Services</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/projects">Expertise</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/contact">Contact</Link></MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link href="/about">About</Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link href="/services">Services</Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link href="/projects">Expertise</Link>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link href="/contact">Contact</Link>
+            </MenuItem>
           </Menu>
         </Toolbar>
       </Container>

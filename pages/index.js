@@ -68,8 +68,8 @@ export default function Home() {
         <HeroSection />
         <ServicesSection />
         <FAQSection />
-        <BlogSection />
         <CTASection />
+        <BlogSection />
       </motion.div>
       {showExitPopup && <ExitIntentPopup onClose={() => setShowExitPopup(false)} />}
     </Layout>

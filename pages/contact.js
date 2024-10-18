@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Typography,
@@ -23,6 +23,8 @@ import { motion } from "framer-motion";
 import { useForm, Controller } from "react-hook-form";
 import emailjs from "@emailjs/browser";
 import { InlineWidget } from "react-calendly";
+
+
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
@@ -78,7 +80,6 @@ const plans = [
 
 export default function Contact() {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [snackbar, setSnackbar] = useState({
     open: false,
@@ -93,6 +94,10 @@ export default function Contact() {
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    emailjs.init("LjgOoqNPpg23JpnH0");
+  }, []);
+
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
@@ -104,22 +109,27 @@ export default function Contact() {
         plan: data.plan,
       };
 
-      await emailjs.send(
+      const response = await emailjs.send(
         "service_itmoea9",
         "template_7nm6yt5",
-        templateParams,
-        "LjgOoqNPpg23JpnH0"
+        templateParams
       );
-      setSnackbar({
-        open: true,
-        message: "Message sent successfully!",
-        severity: "success",
-      });
-      reset();
+
+      if (response.status === 200) {
+        setSnackbar({
+          open: true,
+          message: "Message sent successfully!",
+          severity: "success",
+        });
+        reset();
+      } else {
+        throw new Error("Failed to send message");
+      }
     } catch (error) {
+      console.error("EmailJS error:", error);
       setSnackbar({
         open: true,
-        message: "Failed to send message. Please try again.",
+        message: `Failed to send message: ${error.message}. Please try again.`,
         severity: "error",
       });
     }
@@ -360,11 +370,13 @@ export default function Contact() {
           open={snackbar.open}
           autoHideDuration={6000}
           onClose={handleCloseSnackbar}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         >
           <Alert
             onClose={handleCloseSnackbar}
             severity={snackbar.severity}
-            sx={{ width: "100%" }}
+            variant="filled"
+            elevation={6}
           >
             {snackbar.message}
           </Alert>

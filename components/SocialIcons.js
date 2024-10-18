@@ -6,13 +6,13 @@ import Twitter from '@mui/icons-material/Twitter'
 export default function SocialIcons() {
   return (
     <div>
-      <IconButton aria-label="GitHub" href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+      <IconButton aria-label="GitHub" href="https://github.com/flexfinrtp" target="_blank" rel="noopener noreferrer">
         <GitHub />
       </IconButton>
-      <IconButton aria-label="LinkedIn" href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+      <IconButton aria-label="LinkedIn" href="https://linkedin.com/in/gaffney311" target="_blank" rel="noopener noreferrer">
         <LinkedIn />
       </IconButton>
-      <IconButton aria-label="Twitter" href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
+      <IconButton aria-label="Twitter" href="https://twitter.com/gaffney311" target="_blank" rel="noopener noreferrer">
         <Twitter />
       </IconButton>
     </div>

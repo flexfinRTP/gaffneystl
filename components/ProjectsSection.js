@@ -6,68 +6,50 @@ const projects = [
   {
     title: "Arcus",
     description: "One-click Bitcoin Loans and Native Bitcoin Lending Pools. BSL Pre-Accelerator('24) Cohort. Testnet is Live!",
-    image: "/images/arcus.jpg",
+    image: "/arcus.jpg",
     link: "https://arcusbtc.com/"
   },
   {
     title: "GluBear",
     description: "Pediatric CGM Solutions with Smart Teddy Bear + Mobile App. MIT Grand Hack Boston 2023 - Intersystems 3rd Place Winner!",
-    image: "/images/glubear.jpg",
-    link: "#"
+    image: "/glubear.png",
+    link: "https://myglubear.com/"
   },
   {
     title: "DataLink DAO",
     description: "Global Verifiable Identities through decentralized services. ZK + DiD + DAO integration.",
-    image: "/images/datalink.jpg",
+    image: "/DataLink.jpg",
     link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4183833"
   },
   {
     title: "zAAp Protocol",
     description: "Transaction Bundler on zkSync. 3rd Place Winner in Scaling Ethereum Spring 23!",
-    image: "/images/zaap.jpg",
-    link: "#"
-  },
-  {
-    title: "Palm Protocol",
-    description: "Zeniq Lending Market Nomo App Integration. Developed during ZenCon Rio 2023.",
-    image: "/images/palm.jpg",
-    link: "#"
-  },
-  {
-    title: "BitBull",
-    description: "BTC Prediction Market built on Stacks. Part of Building on Bitcoin March 23 event.",
-    image: "/images/bitbull.jpg",
-    link: "#"
+    image: "/zaap.png",
+    link: "https://github.com/tx-bundler/tx-bundler"
   },
   {
     title: "Quickfund",
     description: "Venture DAO developed during Chainlink Hackathon Fall 22.",
-    image: "/images/quickfund.jpg",
-    link: "#"
+    image: "/quickfund.png",
+    link: "https://github.com/KickStarter-DAO/KickStarter-Frontend"
   },
   {
-    title: "Ninja NFT",
-    description: "DeFi project developed during Berkeley DeFi MOOC Fall 21.",
-    image: "/images/ninja-nft.jpg",
-    link: "https://bit.ly/3yIDCCg"
+    title: "Skeuomorphia",
+    description: "Stablecoin ATM. Print Stablecoin notes for physical redemption, earn passive income on your stablecoin savings.",
+    image: "/skeu.png",
+    link: "https://github.com/flexfinRTP/skeuomorphia"
   },
   {
-    title: "DeSilo",
-    description: "Decentralized Science (DeSoc) project developed during ETHOnline 21.",
-    image: "/images/desilo.jpg",
-    link: "#"
+    title: "Bump Wallet",
+    description: "Bump-to-Pay. Instant Bitcoin payments via NFC.",
+    image: "/bump.png",
+    link: "https://github.com/BumpBTC/"
   },
   {
-    title: "AMM",
-    description: "Automated Market Maker project developed during HackFS 21.",
-    image: "/images/amm.jpg",
-    link: "#"
-  },
-  {
-    title: "Personal Token",
-    description: "Developed during Chainlink Bootcamp Summer 21 - Inaugural Event.",
-    image: "/images/personal-token.jpg",
-    link: "#"
+    title: "Palm Protocol",
+    description: "Zeniq Lending Market Nomo App Integration. Developed during ZenCon Rio 2023.",
+    image: "/palm.png",
+    link: "https://github.com/Palm-Lending"
   },
   {
     title: "Bulk Paper Wallet Generator (ETH)",

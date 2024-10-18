@@ -185,7 +185,7 @@ const Footer = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
-    init("YOUR_EMAILJS_USER_ID");
+    init("LjgOoqNPpg23JpnH0");
   }, []);
 
   const handleSubmit = (e) => {

@@ -35,15 +35,6 @@ export default function Projects() {
 
         <SocialIcons />
 
-        <section className={styles.projects}>
-          <h2>Featured Projects</h2>
-          <div className={styles.projectGrid}>
-            {projects.map((project, index) => (
-              <ProjectCard key={index} project={project} />
-            ))}
-          </div>
-        </section>
-
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: isLoaded ? 1 : 0 }}
