@@ -1,28 +1,35 @@
-import { useState } from 'react'
-import { Card, CardContent, Typography, Button } from '@mui/material/'
-import styles from '../styles/Home.module.css'
+import { useState } from "react";
+import { Card, CardContent, Typography, Button } from "@mui/material/";
+import styles from "../styles/Home.module.css";
+import Image from "next/image";
 
 export default function ProjectCard({ project }) {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Card 
-      className={styles.card} 
-      onMouseEnter={() => setIsHovered(true)} 
+    <Card
+      className={styles.card}
+      onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={styles.mediaContainer}>
         {isHovered ? (
-          <video 
-            src={project.video} 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
+          <video
+            src={project.video}
+            autoPlay
+            loop
+            muted
+            playsInline
             className={styles.media}
           />
         ) : (
-          <img src={project.image} alt={project.title} className={styles.media} />
+          <Image
+            src={project.image}
+            alt={project.title}
+            layout="fill"
+            objectFit="cover"
+            className={styles.media}
+          />
         )}
       </div>
       <CardContent>
@@ -32,11 +39,11 @@ export default function ProjectCard({ project }) {
         <Typography variant="body2" color="textSecondary" component="p">
           {project.description}
         </Typography>
-        <Button 
-          variant="contained" 
-          color="primary" 
-          href={project.link} 
-          target="_blank" 
+        <Button
+          variant="contained"
+          color="primary"
+          href={project.link}
+          target="_blank"
           rel="noopener noreferrer"
           className={styles.button}
         >
@@ -44,5 +51,5 @@ export default function ProjectCard({ project }) {
         </Button>
       </CardContent>
     </Card>
-  )
+  );
 }
