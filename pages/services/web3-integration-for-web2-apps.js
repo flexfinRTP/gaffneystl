@@ -95,7 +95,7 @@ export default function Web3IntegrationForWeb2Apps() {
       }
     ],
     price: "15,000",
-    videoSrc: "/videos/web3-integration.mp4"
+    imageSrc: "/integrate.jpg"
   };
 
   const structuredData = {
@@ -191,7 +191,7 @@ export default function Web3IntegrationForWeb2Apps() {
               >
                 <Box sx={{ position: 'relative', width: '100%', height: isMobile ? '300px' : '400px' }}>
                   <Image
-                    src="/images/web3-integration.jpg"
+                    src="/integrate.jpg"
                     alt="Illustration showing the integration of Web3 technologies into traditional Web2 applications"
                     layout="fill"
                     objectFit="cover"

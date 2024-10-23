@@ -47,7 +47,7 @@ export default function Header() {
           <Link href="/">
             <Typography
               variant="h6"
-              sx={{ fontWeight: 700, color: theme.palette.primary.main }}
+              sx={{ fontWeight: 700, cursor: 'pointer', color: theme.palette.primary.main }}
             >
               Gaffney Consulting
             </Typography>

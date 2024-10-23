@@ -191,7 +191,7 @@ export default function FreeDAppOffer() {
               >
                 <Box sx={{ position: 'relative', width: '100%', height: isMobile ? '300px' : '400px' }}>
                   <Image
-                    src="/images/free-dapp-offer.jpg"
+                    src="/dapp.png"
                     alt="Illustration of a free dApp prototype showing blockchain nodes and a user interface"
                     layout="fill"
                     objectFit="cover"

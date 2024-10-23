@@ -7,7 +7,7 @@ const blogPosts = [
   {
     title: "Coming Soon",
     excerpt: "",
-    image: "/images/defi-trends.jpg",
+    image: "/coming-soon.png",
     slug: "future-of-defi-trends"
   },
   // {

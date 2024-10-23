@@ -69,7 +69,7 @@ export default function About() {
               <Grid item xs={12} md={4}>
                 <Box display="flex" justifyContent="center">
                   <ProfileImage
-                    src="/images/john-doe-profile.jpg"
+                    src="/jg.jpg"
                     alt="Justin Gaffney"
                     width={300}
                     height={300}

@@ -95,7 +95,7 @@ export default function BlockchainStrategyConsulting() {
       }
     ],
     price: "5,000",
-    videoSrc: "/videos/blockchain-strategy.mp4"
+    videoSrc: "/blockchain.png"
   };
 
   const structuredData = {
@@ -191,7 +191,7 @@ export default function BlockchainStrategyConsulting() {
               >
                 <Box sx={{ position: 'relative', width: '100%', height: isMobile ? '300px' : '400px' }}>
                   <Image
-                    src="/images/blockchain-strategy-consulting.jpg"
+                    src="/blockchain.png"
                     alt="Blockchain Strategy Consulting illustration showing interconnected nodes representing a blockchain network"
                     layout="fill"
                     objectFit="cover"

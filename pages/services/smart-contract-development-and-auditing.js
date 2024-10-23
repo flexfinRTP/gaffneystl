@@ -258,7 +258,7 @@ export default function SmartContractDevelopmentAuditing() {
                   }}
                 >
                   <Image
-                    src="/images/smart-contract-development.jpg"
+                    src="/smart-contracts.png"
                     alt="Illustration of smart contract development process showing code blocks and blockchain integration"
                     layout="fill"
                     objectFit="cover"

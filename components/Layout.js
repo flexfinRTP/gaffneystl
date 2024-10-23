@@ -23,7 +23,7 @@ export default function Layout({ children }) {
       <ErrorBoundary>
         <Box className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 to-blue-900">
           <Header />
-          <Breadcrumbs />
+          {/* <Breadcrumbs /> */}
           <main className="flex-grow">
             <Container maxWidth="lg" className="py-8">
               {children}

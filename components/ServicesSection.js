@@ -17,7 +17,7 @@ const services = [
     title: "Web3 Strategy Consulting",
     description:
       "Develop a comprehensive Web3 strategy tailored to your business needs. Stay ahead of the curve in the decentralized economy.",
-    image: "/images/web3-strategy.svg",
+    image: "/blockchain.jpg",
     benefits: [
       "Future-proof business model",
       "Competitive advantage",
@@ -29,7 +29,7 @@ const services = [
     title: "Blockchain Integration",
     description:
       "Seamlessly integrate blockchain technology into your existing systems. Enhance security, transparency, and efficiency across your operations.",
-    image: "/images/blockchain-integration.svg",
+    image: "/integrate.jpg",
     benefits: [
       "Improved security",
       "Enhanced transparency",
@@ -41,7 +41,7 @@ const services = [
     title: "Smart Contract Development",
     description:
       "Create secure and efficient smart contracts to automate and enforce your business agreements. Reduce costs and increase trust in transactions.",
-    image: "/images/smart-contract.svg",
+    image: "/smart-contracts.png",
     benefits: [
       "Automated enforcement",
       "Reduced intermediaries",
