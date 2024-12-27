@@ -19,17 +19,35 @@ export default function Home() {
   useEffect(() => {
     setIsLoaded(true);
     const hasVisitedBefore = localStorage.getItem('hasVisited');
+    
     if (!hasVisitedBefore) {
-      const exitIntent = (e) => {
-        if (e.clientY <= 0) {
+      let exitIntentShown = false;
+      
+      const handleMouseLeave = (e) => {
+        // Only trigger if moving mouse above the top of the window
+        if (e.clientY <= 0 && !exitIntentShown) {
           setShowExitPopup(true);
-          document.removeEventListener('mouseleave', exitIntent);
+          exitIntentShown = true;
+          // Set visited flag
+          localStorage.setItem('hasVisited', 'true');
         }
       };
-      document.addEventListener('mouseleave', exitIntent);
-      return () => document.removeEventListener('mouseleave', exitIntent);
+
+      // Add event listener with delay to prevent immediate triggering
+      setTimeout(() => {
+        document.addEventListener('mouseleave', handleMouseLeave);
+      }, 2000);
+
+      return () => {
+        document.removeEventListener('mouseleave', handleMouseLeave);
+      };
     }
   }, []);
+
+  const handleCloseExitPopup = () => {
+    setShowExitPopup(false);
+    localStorage.setItem('hasVisited', 'true');
+  };
 
   return (
     <Layout>
@@ -39,24 +57,6 @@ export default function Home() {
           name="description"
           content="Transform your business with expert Web3 and blockchain consulting. Book a call to start your journey into decentralized solutions."
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              "name": "Gaffney Web3 Consulting",
-              "description": "Expert Web3 and blockchain consulting services",
-              "url": "https://www.gaffneystl.com",
-              "logo": "https://www.gaffneystl.com/logo.png",
-              "sameAs": [
-                "https://www.linkedin.com/in/gaffney311",
-                "https://twitter.com/gaffney311",
-                "https://github.com/flexfinrtp"
-              ]
-            }
-          `}
-        </script>
       </Head>
 
       <motion.div
@@ -69,9 +69,12 @@ export default function Home() {
         <ServicesSection />
         <FAQSection />
         <CTASection />
-        <BlogSection />
+        {/* <BlogSection /> */}
       </motion.div>
-      {showExitPopup && <ExitIntentPopup onClose={() => setShowExitPopup(false)} />}
+
+      {showExitPopup && (
+        <ExitIntentPopup onClose={handleCloseExitPopup} />
+      )}
     </Layout>
   );
 }

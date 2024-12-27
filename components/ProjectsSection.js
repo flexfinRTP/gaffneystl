@@ -62,7 +62,7 @@ const projects = [
 export default function ProjectsSection() {
   return (
     <Box component="section" sx={{ py: 8 }}>
-      <Typography variant="h2" className="text-3xl md:text-4xl font-bold mb-8 text-center">
+      <Typography variant="h2" sx={{ pb: 2 }} className="text-3xl md:text-4xl font-bold mb-8 text-center">
         Featured Projects
       </Typography>
       <Grid container spacing={4}>
@@ -74,7 +74,7 @@ export default function ProjectsSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card className="h-full flex flex-col">
-                <CardMedia sx={{ height: 200, position: 'relative' }}>
+                <CardMedia sx={{ height: 420, position: 'relative' }}>
                   <Image
                     src={project.image}
                     alt={project.title}

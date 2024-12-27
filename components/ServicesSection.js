@@ -17,7 +17,7 @@ const services = [
     title: "Web3 Strategy Consulting",
     description:
       "Develop a comprehensive Web3 strategy tailored to your business needs. Stay ahead of the curve in the decentralized economy.",
-    image: "/blockchain.jpg",
+    image: "/blockchain.png",
     benefits: [
       "Future-proof business model",
       "Competitive advantage",
@@ -29,7 +29,7 @@ const services = [
     title: "Blockchain Integration",
     description:
       "Seamlessly integrate blockchain technology into your existing systems. Enhance security, transparency, and efficiency across your operations.",
-    image: "/integrate.jpg",
+    image: "/integrate.png",
     benefits: [
       "Improved security",
       "Enhanced transparency",

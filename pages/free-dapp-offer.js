@@ -135,8 +135,6 @@ export default function FreeDAppOffer() {
 
       <Container maxWidth="lg">
         <Box my={8}>
-          <Grid container spacing={6} alignItems="center">
-            <Grid item xs={12} md={6}>
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -182,37 +180,6 @@ export default function FreeDAppOffer() {
                   </Link>
                 </StyledPaper>
               </motion.div>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Box sx={{ position: 'relative', width: '100%', height: isMobile ? '300px' : '400px' }}>
-                  <Image
-                    src="/dapp.png"
-                    alt="Illustration of a free dApp prototype showing blockchain nodes and a user interface"
-                    layout="fill"
-                    objectFit="cover"
-                    priority
-                  />
-                </Box>
-                <VideoWrapper>
-                  <video 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline 
-                    aria-label="Video showcasing the process and benefits of our free dApp prototype offer"
-                  >
-                    <source src={offerDetails.videoSrc} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                </VideoWrapper>
-              </motion.div>
-            </Grid>
-          </Grid>
         </Box>
       </Container>
     </Layout>

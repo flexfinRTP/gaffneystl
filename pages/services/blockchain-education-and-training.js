@@ -138,8 +138,6 @@ export default function BlockchainEducationAndTraining() {
 
       <Container maxWidth="lg">
         <Box my={8}>
-          <Grid container spacing={6} alignItems="center">
-            <Grid item xs={12} md={6}>
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -182,37 +180,6 @@ export default function BlockchainEducationAndTraining() {
                   </Link>
                 </StyledPaper>
               </motion.div>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Box sx={{ position: 'relative', width: '100%', height: isMobile ? '300px' : '400px' }}>
-                  <Image
-                    src="/images/blockchain-education.jpg"
-                    alt="Illustration of blockchain education and training, showing a diverse group of professionals learning about blockchain technology"
-                    layout="fill"
-                    objectFit="cover"
-                    priority
-                  />
-                </Box>
-                <VideoWrapper>
-                  <video 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline 
-                    aria-label="Video showcasing our blockchain education and training programs in action"
-                  >
-                    <source src={service.videoSrc} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                </VideoWrapper>
-              </motion.div>
-            </Grid>
-          </Grid>
         </Box>
       </Container>
     </Layout>

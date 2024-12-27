@@ -30,10 +30,10 @@ export default function Projects() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Justin Gaffney</h1>
-        <p className={styles.description}>Web3 Developer & Product Manager</p>
+        <h1 className={styles.title}>Gaffney Consulting</h1>
+        <p className={styles.description}>Innovative blockchain solutions and Web3 strategies</p>
 
-        <SocialIcons />
+        {/* <SocialIcons /> */}
 
         <motion.div
           initial={{ opacity: 0 }}

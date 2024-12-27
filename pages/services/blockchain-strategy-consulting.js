@@ -138,8 +138,6 @@ export default function BlockchainStrategyConsulting() {
 
       <Container maxWidth="lg">
         <Box my={8}>
-          <Grid container spacing={6} alignItems="center">
-            <Grid item xs={12} md={6}>
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -182,8 +180,8 @@ export default function BlockchainStrategyConsulting() {
                   </Link>
                 </StyledPaper>
               </motion.div>
-            </Grid>
-            <Grid item xs={12} md={6}>
+
+            {/* <Grid item xs={12} md={6}>
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -211,8 +209,7 @@ export default function BlockchainStrategyConsulting() {
                   </video>
                 </VideoWrapper>
               </motion.div>
-            </Grid>
-          </Grid>
+            </Grid> */}
         </Box>
       </Container>
     </Layout>

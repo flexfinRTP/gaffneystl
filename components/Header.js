@@ -4,120 +4,203 @@ import Link from "next/link";
 import {
   AppBar,
   Toolbar,
-  Typography,
-  Button,
   Container,
-  Box,
+  Button,
   IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Box,
+  useScrollTrigger,
+  Slide,
+  Typography,
   Menu,
   MenuItem,
-  useScrollTrigger,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { motion, AnimatePresence } from "framer-motion";
 
+const StyledAppBar = styled(AppBar)(({ theme, trigger }) => ({
+  background: trigger
+    ? "rgba(15, 23, 42, 0.9)"
+    : "transparent",
+  backdropFilter: trigger ? "blur(10px)" : "none",
+  boxShadow: trigger ? "0 4px 30px rgba(0, 0, 0, 0.1)" : "none",
+  transition: "all 0.3s ease",
+}));
+
+const NavLink = styled('a')(({ theme }) => ({
+  color: theme.palette.text.primary,
+  marginLeft: theme.spacing(2),
+  textDecoration: 'none',
+  position: "relative",
+  padding: '0.5rem 1rem',
+  cursor: 'pointer',
+  "&::after": {
+    content: '""',
+    position: "absolute",
+    width: "0",
+    height: "2px",
+    bottom: 0,
+    left: "50%",
+    background: theme.palette.primary.main,
+    transition: "all 0.3s ease",
+    transform: "translateX(-50%)",
+  },
+  "&:hover::after": {
+    width: "100%",
+  },
+}));
+
+const LogoLink = styled('a')(({ theme }) => ({
+  textDecoration: 'none',
+  cursor: 'pointer',
+}));
+
+const NavButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.text.primary,
+  marginLeft: theme.spacing(2),
+  position: "relative",
+  "&::after": {
+    content: '""',
+    position: "absolute",
+    width: "0",
+    height: "2px",
+    bottom: 0,
+    left: "50%",
+    background: theme.palette.primary.main,
+    transition: "all 0.3s ease",
+    transform: "translateX(-50%)",
+  },
+  "&:hover::after": {
+    width: "100%",
+  },
+}));
+
+const Logo = styled(Typography)(({ theme }) => ({
+  fontFamily: "Manrope",
+  fontWeight: 800,
+  background: "#fff",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  cursor: "pointer",
+}));
+
+const MobileDrawer = styled(Drawer)(({ theme }) => ({
+  "& .MuiDrawer-paper": {
+    width: "100%",
+    maxWidth: "300px",
+    background: theme.palette.background.default,
+    padding: theme.spacing(2),
+  },
+}));
+
+const navigationLinks = [
+  { title: "About", path: "/about" },
+  { title: "Services", path: "/services" },
+  { title: "Projects", path: "/projects" },
+  { title: "Contact", path: "/contact" },
+];
+
+function HideOnScroll({ children }) {
+  const trigger = useScrollTrigger();
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
+
 export default function Header() {
-  const theme = useTheme();
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 100,
   });
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
 
   return (
-    <AppBar
-      position="sticky"
-      sx={{
-        backgroundColor: trigger ? "rgba(26, 26, 46, 0.9)" : "transparent",
-        transition: "background-color 0.3s ease",
-        boxShadow: trigger ? 1 : "none",
-      }}
-    >
-      <Container>
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          <Link href="/">
-            <Typography
-              variant="h6"
-              sx={{ fontWeight: 700, cursor: 'pointer', color: theme.palette.primary.main }}
-            >
-              Gaffney Consulting
-            </Typography>
-          </Link>
-          <Box
-            sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
-          >
-            <Button color="inherit" sx={{ ml: 2 }}>
-              <Link href="/about">About</Link>
-            </Button>
-            <Button color="inherit" sx={{ ml: 2 }}>
-              <Link href="/services">Services</Link>
-            </Button>
-            <Button color="inherit" sx={{ ml: 2 }}>
-              <Link href="/projects">Expertise</Link>
-            </Button>
-            <AnimatePresence>
-              {trigger && (
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                >
-                  <Button color="primary" variant="contained" sx={{ ml: 2 }}>
-                    <Link href="/contact">Contact</Link>
-                  </Button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </Box>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ display: { md: "none" } }}
-            onClick={handleMenu}
-          >
-            <MenuIcon />
+    <>
+        <StyledAppBar elevation={0} trigger={trigger}>
+          <Container maxWidth="lg">
+            <Toolbar sx={{ justifyContent: "space-between", py: 1 }}>
+              <Link href="/" passHref>
+                <LogoLink>
+                  <Logo variant="h5">Gaffney Consulting</Logo>
+                </LogoLink>
+              </Link>
+
+              {/* Desktop Navigation */}
+              <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                {navigationLinks.map((link) => (
+                  <Link key={link.title} href={link.path} passHref>
+                    <NavLink>{link.title}</NavLink>
+                  </Link>
+                ))}
+              </Box>
+
+              {/* Mobile Menu Icon */}
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="end"
+                onClick={handleDrawerToggle}
+                sx={{ display: { md: "none" } }}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Toolbar>
+          </Container>
+        </StyledAppBar>
+
+      {/* Mobile Navigation Drawer */}
+      <MobileDrawer
+        anchor="right"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{ keepMounted: true }}
+      >
+        <Box sx={{ textAlign: "right", mb: 2 }}>
+          <IconButton onClick={handleDrawerToggle}>
+            <CloseIcon />
           </IconButton>
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleClose}>
-              <Link href="/about">About</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link href="/services">Services</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link href="/projects">Expertise</Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link href="/contact">Contact</Link>
-            </MenuItem>
-          </Menu>
-        </Toolbar>
-      </Container>
-    </AppBar>
+        </Box>
+        <List>
+          {navigationLinks.map((link) => (
+            <Link key={link.title} href={link.path} passHref>
+              <ListItem
+                button
+                onClick={handleDrawerToggle}
+                component="a"
+              >
+                <ListItemText
+                  primary={link.title}
+                  sx={{
+                    "& .MuiListItemText-primary": {
+                      fontWeight: 600,
+                    },
+                  }}
+                />
+              </ListItem>
+            </Link>
+          ))}
+        </List>
+      </MobileDrawer>
+    </>
   );
 }

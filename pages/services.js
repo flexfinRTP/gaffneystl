@@ -248,7 +248,7 @@ export default function Services() {
 
           <Box sx={{ my: 8 }}>
             <Typography variant="h2" align="center" gutterBottom>
-              Service Packages
+              Web3 Integration Service Packages
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
               Choose the perfect plan for your business needs

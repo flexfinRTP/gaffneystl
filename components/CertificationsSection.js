@@ -28,13 +28,6 @@ const StyledChip = styled(Chip)(({ theme }) => ({
 
 const certifications = [
   {
-    title: "Google Cloud Digital Leader",
-    issuer: "Coursera",
-    date: "Mar 2022",
-    credentialId: "TTY992KX9JEX",
-    link: "https://www.credential.net/123456"
-  },
-  {
     title: "Certified Scrum Product Owner (CSPO)",
     issuer: "Scrum Alliance",
     date: "Jan 2022",
@@ -42,11 +35,18 @@ const certifications = [
     link: "https://www.scrumalliance.org/certification/123456"
   },
   {
-    title: "Ninja NFT",
+    title: "DeFi Ninja NFT - UC Berkeley",
     issuer: "Berkeley DeFi MOOC",
     date: "Fall 2021",
     credentialId: "BNFT2021",
     link: "https://bit.ly/3yIDCCg"
+  },
+  {
+    title: "Google Cloud Digital Leader",
+    issuer: "Coursera",
+    date: "Mar 2022",
+    credentialId: "TTY992KX9JEX",
+    link: "https://www.credential.net/123456"
   },
   // Add more certifications here
 ];

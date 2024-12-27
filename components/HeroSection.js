@@ -35,10 +35,10 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Image
-              src="/dapp.png"
+              src="/revenue.png"
               alt="Web3 Illustration"
-              width={600}
-              height={600}
+              width={400}
+              height={400}
               layout="responsive"
               priority
             />
