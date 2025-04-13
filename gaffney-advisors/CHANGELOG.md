@@ -1,0 +1,172 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [Unreleased]
+
+### Added
+- Created About page with company information, mission, values, and team sections
+- Created Privacy Policy page with standard financial advisor privacy information
+- Created Terms of Service page with comprehensive terms for financial advisory services
+- Added Footer component with navigation links to all pages
+- Created Hero component with animated text and call-to-action buttons
+- Created NewsletterSignup component with form validation and submission handling
+- Added AnimatedWrapper component for consistent animations across the site
+- Added custom theme with Playfair Display and Caveat fonts
+- Added Material UI Next.js integration
+- Added emotion for styled components
+- Created RetirementQuestionnaire component with multi-step form
+- Added questionnaire API endpoint with Mailjet integration
+- Added form validation using react-hook-form and zod
+- Implemented email notifications for questionnaire submissions
+- Added questionnaire component to home page
+- Created QuestionnaireHero component with full-screen hero design
+- Added modal dialog for questionnaire form
+- Implemented responsive typography and layout for hero section
+- Added dark overlay and gold accent styling
+- Created ServicesSection component with animated service cards
+- Added Material UI icons for service representations
+- Created HappyRetirement component with split-screen design
+- Added motivational messaging with custom typography
+- Implemented responsive text sizing and layout
+- Created new AboutHero component with animated text and city background
+- Created AboutContent component with bio modal and animated sections
+- Added professional profile card with hover effects
+- Implemented Material UI Modal for detailed bio
+- Added Framer Motion animations for smooth transitions
+- Created shared UI components library with standardized components:
+  - StandardCard with hover effects and consistent styling
+  - StandardButton with unified styling and animations
+  - StandardSection for consistent section layouts
+  - StandardHeading and StandardSubheading for typography
+  - AnimatedSection for consistent animations
+  - FeatureCard for service highlights
+  - TestimonialCard for client testimonials
+  - ContactField for form inputs
+  - StandardGrid for consistent grid layouts
+  - StandardImage for optimized image handling
+  - StandardForm for form validation and submission
+- Standardized form components with proper validation and error handling
+- Loading state component for better user experience during data fetching
+- Error boundary component for graceful error handling
+- TypeScript interfaces for form props and validation
+- Integration with react-hook-form and zod for form validation
+- Blog section with initial structure and components
+  - Created `/blog` page with responsive grid layout
+  - Added BlogCard component for displaying blog posts
+  - Updated navigation to include Blog section
+- Enhanced blog section implementation:
+  - Added MDX support for blog posts
+  - Created blog post content structure
+  - Implemented dynamic blog post pages
+  - Added sample blog post about retirement planning
+  - Created utility functions for loading blog posts
+- Enhanced About page with mission and vision statements:
+  - Created MissionVision component with dedicated sections
+  - Added comprehensive mission statement and commitments
+  - Added forward-looking vision statement
+  - Implemented responsive layout with clean design
+  - Added proper meta tags and descriptions
+- Enhanced Contact page with detailed information:
+  - Added Google Maps integration
+  - Created ContactDetails component with comprehensive contact information
+  - Added business hours and social media links
+  - Improved layout and styling
+  - Added proper meta tags and descriptions
+- Created FAQ page with comprehensive Q&A:
+  - Added common questions about services and approach
+  - Implemented expandable accordion sections
+  - Added proper meta tags and descriptions
+- Enhanced Disclosures visibility:
+  - Added DisclosureBanner component at the top of all pages
+  - Added prominent Disclosures button in header
+  - Updated navigation to include FAQ section
+- Implemented newsletter promotional banner:
+  - Added collapsible banner with email signup
+  - Improved header positioning with banner
+  - Added responsive design for mobile and desktop
+  - Integrated newsletter signup form
+- Enhanced promotional banner with FOMO messaging and 2026 launch announcement
+- Integrated newsletter signup functionality with Mailjet API
+- Added success notification for newsletter signup
+- Improved error handling and loading states in promotional banner
+- Added persistent banner state using localStorage
+- Positioned promotional banner below header with proper styling
+
+### Changed
+- Consolidated theme providers into a single theme configuration
+- Updated theme colors to match logo and brand identity:
+  - Primary: Deep Navy Blue (#1A3B5D) for main brand elements
+  - Secondary: Rich Gold (#C4A052) for accents and highlights
+  - Background: Light Gray (#F7F9FC) for better contrast
+  - Text: Dark Navy (#1A2B3C) for readability
+  - Success: Forest Green (#2E7D32)
+  - Warning: Warm Amber (#FFA000)
+  - Error: Deep Red (#D32F2F)
+  - Info: Steel Blue (#3D5A80)
+- Updated all components to use theme colors consistently:
+  - ServicesHero
+  - AboutHero
+  - ContactHero
+  - Services page
+  - Header and Footer (already using theme colors)
+- Updated theme colors to use a consistent palette across components
+- Enhanced button hover effects with smooth transitions
+- Improved typography hierarchy and font family usage
+- Added proper emotion cache setup for server-side rendering
+- Updated Hero component to use theme values consistently
+- Refactored animation system to use CSS transitions instead of framer-motion
+- Updated About page to use new CSS-based animation wrapper
+- Updated Hero component with new modern design and animations
+- Updated NewsletterSignup component to use new animation wrapper
+- Updated TrustIndicators component to use new animation wrapper
+- Updated AnimatedSection component to use new animation wrapper
+- Updated Retirement Planning page to use new animation wrapper
+- Updated Digital Assets page to use new animation wrapper
+- Fixed Footer component syntax errors and improved navigation structure
+- Enhanced typography with custom fonts
+- Improved button styling and component theming
+- Modified QuestionnaireHero to be a regular section with left-aligned text
+- Restored original Hero component on homepage
+- Updated questionnaire section styling with dark overlay and grid layout
+- Updated theme configuration with:
+  - Standardized color palette with primary and secondary colors
+  - Consistent typography scale with responsive font sizes
+  - Unified spacing scale for consistent layouts
+  - Standardized breakpoints for responsive design
+  - Enhanced component style overrides for:
+    - Buttons with hover effects
+    - Cards with elevation and animations
+    - Container with responsive padding
+    - AppBar with glass morphism effect
+    - Links with smooth transitions
+  - Added semantic colors (success, warning, error, info)
+  - Added standardized animation timing functions
+  - Added z-index scale for consistent layering
+- Enhanced form handling with proper TypeScript types
+- Improved error handling across components
+- Standardized component props and interfaces
+- Enabled promotional banner in layout with dynamic import
+- Updated banner styling with subtle border and improved positioning
+
+### Fixed
+- Resolved theme provider duplication
+- Fixed font loading and variable usage
+- Corrected button color contrast issues
+- Resolved framer-motion runtime errors by implementing CSS-based animations
+- Fixed navigation links in Footer component
+- Addressed linter errors in animation components
+- Removed all framer-motion dependencies to fix server component bundler errors
+- Fixed Material UI integration with Next.js 13+
+- Resolved TypeScript errors in shared components
+- Standardized animation timings and transitions
+- Improved responsive behavior across all components
+- Fixed ContactField component to use Material UI TextField
+- Removed unused imports and fixed linter errors
+- TypeScript errors in form components
+- Form validation and error handling issues
+- Component prop type definitions
+
+### Removed
+- Removed framer-motion package and all related imports
+- Removed motion component usage across all pages and components 
