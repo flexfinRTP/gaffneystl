@@ -64,7 +64,7 @@ export default function ContactHero() {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundImage: 'url("/contact-bg.jpg")',
+           // backgroundImage: 'url("/gwmlogo.png")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'brightness(0.4)',

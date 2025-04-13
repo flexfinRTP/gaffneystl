@@ -1,54 +1,28 @@
 import { NextResponse } from 'next/server'
-import Mailjet from 'node-mailjet'
-
-const mailjet = new Mailjet({
-  apiKey: process.env.MAILJET_API_KEY || '',
-  apiSecret: process.env.MAILJET_API_SECRET || '',
-})
+import { sendContactFormEmail } from '@/lib/email/mailjet'
 
 export async function POST(request: Request) {
   try {
-    const { name, email, message, phone } = await request.json()
+    const { name, email, message } = await request.json()
 
-    // Send email to admin using template
-    const result = await mailjet.post('send', { version: 'v3.1' }).request({
-      Messages: [
-        {
-          From: {
-            Email: process.env.MAILJET_FROM_EMAIL,
-            Name: process.env.MAILJET_FROM_NAME,
-          },
-          To: [
-            {
-              Email: process.env.ADMIN_EMAIL,
-              Name: 'Admin',
-            },
-          ],
-          TemplateID: parseInt(process.env.MAILJET_TEMPLATE_CONTACT_FORM || '0'),
-          TemplateLanguage: true,
-          TemplateErrorDeliver: true,
-          TemplateErrorReporting: {
-            Email: process.env.ADMIN_EMAIL,
-            Name: 'Template Error Reporting',
-          },
-          Subject: 'New Contact Form Submission',
-          Variables: {
-            name,
-            email,
-            phone: phone || 'Not provided',
-            message,
-            submissionDate: new Date().toLocaleDateString(),
-            companyName: 'Gaffney Wealth Management',
-          },
-        },
-      ],
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { success: false, message: 'Name, email, and message are required' },
+        { status: 400 }
+      )
+    }
+
+    await sendContactFormEmail(name, email, message)
+
+    return NextResponse.json({
+      success: true,
+      message: 'Contact form submitted successfully'
     })
-
-    console.log('Mailjet send result:', JSON.stringify(result.body, null, 2))
-
-    return NextResponse.json({ success: true })
-  } catch (error) {
-    console.error('Error sending contact form:', error)
-    return NextResponse.json({ success: false }, { status: 500 })
+  } catch (error: any) {
+    console.error('Contact form submission error:', error)
+    return NextResponse.json(
+      { success: false, message: 'Failed to submit contact form' },
+      { status: 500 }
+    )
   }
 } 

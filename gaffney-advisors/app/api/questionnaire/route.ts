@@ -1,100 +1,68 @@
 import { NextResponse } from 'next/server'
-import Mailjet from 'node-mailjet'
+import { sendQuestionnaireAdminEmail, sendQuestionnaireUserEmail } from '@/lib/email/mailjet'
+import { z } from 'zod'
 
-// Initialize Mailjet client
-const mailjet = new Mailjet({
-  apiKey: process.env.MAILJET_API_KEY || '',
-  apiSecret: process.env.MAILJET_API_SECRET || '',
+const questionnaireSchema = z.object({
+  email: z.string().email('Invalid email address'),
+  firstName: z.string().min(1, 'First name is required'),
+  lastName: z.string().min(1, 'Last name is required'),
+  // Add other fields as needed
 })
 
 export async function POST(request: Request) {
   try {
-    const data = await request.json()
+    const body = await request.json()
     
-    // Send email to admin using template
-    const adminResult = await mailjet.post('send', { version: 'v3.1' }).request({
-      Messages: [
-        {
-          From: {
-            Email: process.env.MAILJET_FROM_EMAIL,
-            Name: process.env.MAILJET_FROM_NAME,
-          },
-          To: [
-            {
-              Email: process.env.ADMIN_EMAIL,
-              Name: 'Admin',
-            },
-          ],
-          TemplateID: parseInt(process.env.MAILJET_TEMPLATE_QUESTIONNAIRE_ADMIN || '0'),
-          TemplateLanguage: true,
-          TemplateErrorDeliver: true,
-          TemplateErrorReporting: {
-            Email: process.env.ADMIN_EMAIL,
-            Name: 'Template Error Reporting',
-          },
-          Subject: 'New Retirement Questionnaire Submission',
-          Variables: {
-            firstName: data.personalInfo.firstName,
-            lastName: data.personalInfo.lastName,
-            email: data.personalInfo.email,
-            phone: data.personalInfo.phone || 'Not provided',
-            age: data.personalInfo.age,
-            currentIncome: data.financialInfo.currentIncome,
-            retirementAge: data.financialInfo.retirementAge,
-            currentSavings: data.financialInfo.currentSavings,
-            monthlyContribution: data.financialInfo.monthlyContribution,
-            riskTolerance: data.financialInfo.riskTolerance,
-            investmentGoals: data.investmentPreferences.investmentGoals,
-            preferredInvestments: data.investmentPreferences.preferredInvestments.join(', '),
-            digitalAssetInterest: data.investmentPreferences.digitalAssetInterest,
-            submissionDate: new Date().toLocaleDateString(),
-            companyName: 'Gaffney Wealth Management',
-          },
+    // Validate the request body
+    const validationResult = questionnaireSchema.safeParse(body)
+    if (!validationResult.success) {
+      return NextResponse.json(
+        { 
+          success: false, 
+          message: 'Invalid form data',
+          errors: validationResult.error.errors 
         },
-      ],
+        { status: 400 }
+      )
+    }
+
+    const { email, ...responses } = validationResult.data
+
+    // Check for required environment variables
+    if (!process.env.MAILJET_API_KEY || !process.env.MAILJET_API_SECRET) {
+      console.error('Mailjet credentials are missing')
+      return NextResponse.json(
+        { success: false, message: 'Email service configuration error' },
+        { status: 500 }
+      )
+    }
+
+    if (!process.env.ADMIN_EMAIL) {
+      console.error('Admin email is not configured')
+      return NextResponse.json(
+        { success: false, message: 'Admin email configuration error' },
+        { status: 500 }
+      )
+    }
+
+    // Send admin notification
+    await sendQuestionnaireAdminEmail(email, responses)
+
+    // Send user confirmation
+    await sendQuestionnaireUserEmail(email)
+
+    return NextResponse.json({
+      success: true,
+      message: 'Questionnaire submitted successfully'
     })
-
-    // Send confirmation email to user using template
-    const userResult = await mailjet.post('send', { version: 'v3.1' }).request({
-      Messages: [
-        {
-          From: {
-            Email: process.env.MAILJET_FROM_EMAIL,
-            Name: process.env.MAILJET_FROM_NAME,
-          },
-          To: [
-            {
-              Email: data.personalInfo.email,
-              Name: `${data.personalInfo.firstName} ${data.personalInfo.lastName}`,
-            },
-          ],
-          TemplateID: parseInt(process.env.MAILJET_TEMPLATE_QUESTIONNAIRE_USER || '0'),
-          TemplateLanguage: true,
-          TemplateErrorDeliver: true,
-          TemplateErrorReporting: {
-            Email: process.env.ADMIN_EMAIL,
-            Name: 'Template Error Reporting',
-          },
-          Subject: 'Thank You for Completing Our Retirement Questionnaire',
-          Variables: {
-            firstName: data.personalInfo.firstName,
-            lastName: data.personalInfo.lastName,
-            email: data.personalInfo.email,
-            submissionDate: new Date().toLocaleDateString(),
-            companyName: 'Gaffney Wealth Management',
-          },
-        },
-      ],
-    })
-
-    console.log('Mailjet admin send result:', JSON.stringify(adminResult.body, null, 2))
-    console.log('Mailjet user send result:', JSON.stringify(userResult.body, null, 2))
-
-    return NextResponse.json({ success: true })
-  } catch (error) {
-    console.error('Error processing questionnaire:', error)
+  } catch (error: any) {
+    console.error('Questionnaire submission error:', error)
     return NextResponse.json(
-      { error: 'Failed to process questionnaire' },
+      { 
+        success: false, 
+        message: error.message || 'Failed to submit questionnaire',
+        error: process.env.NODE_ENV === 'development' ? error.message : undefined
+      },
       { status: 500 }
     )
   }

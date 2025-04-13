@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import BlogCard from '../components/BlogCard';
 import { getAllPosts } from '../utils/blog';
 
-const MotionBox = motion(Box);
+const MotionBox = motion.create(Box);
 
 export default function BlogPage() {
   const theme = useTheme();

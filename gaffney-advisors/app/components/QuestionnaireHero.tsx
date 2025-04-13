@@ -13,7 +13,7 @@ export default function QuestionnaireHero() {
         sx={{
           py: { xs: 10, md: 12 },
           backgroundColor: "rgba(26, 59, 93, 0.95)", // Deep Navy Blue overlay
-          backgroundImage: '/gwm.png',
+            // backgroundImage: 'url("/gwmlogo.png")',
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundBlendMode: "overlay",
@@ -95,6 +95,7 @@ export default function QuestionnaireHero() {
                   variant="contained"
                   size="large"
                   onClick={() => setShowQuestionnaire(true)}
+                  
                   sx={{
                     backgroundColor: "#C4A052", // Rich Gold
                     color: "#FFFFFF", // Light Gray

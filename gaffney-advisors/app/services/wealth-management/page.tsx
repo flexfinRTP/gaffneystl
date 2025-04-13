@@ -4,7 +4,7 @@ import { Container, Typography, Box, Grid, useTheme } from '@mui/material'
 import { motion } from 'framer-motion'
 import { AccountBalance, TrendingUp, Security, Assessment } from '@mui/icons-material'
 
-const MotionBox = motion(Box)
+const MotionBox = motion.create(Box)
 
 export default function WealthManagementPage() {
   const theme = useTheme()

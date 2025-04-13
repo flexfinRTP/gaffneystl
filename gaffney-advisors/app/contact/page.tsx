@@ -7,7 +7,7 @@ import ContactHero from '../components/ContactHero'
 import ContactDetails from '../components/ContactDetails'
 import { Phone, Email, LocationOn, AccessTime } from '@mui/icons-material'
 
-const MotionBox = motion(Box)
+const MotionBox = motion.create(Box)
 
 export default function Contact() {
   const theme = useTheme();

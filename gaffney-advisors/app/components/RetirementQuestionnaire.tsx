@@ -23,6 +23,7 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  Alert,
 } from '@mui/material'
 
 const questionnaireSchema = z.object({
@@ -54,6 +55,10 @@ const steps = ['Personal Information', 'Financial Information', 'Investment Pref
 export default function RetirementQuestionnaire() {
   const [activeStep, setActiveStep] = useState(0)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
 
   const { register, handleSubmit, formState: { errors }, watch } = useForm<QuestionnaireData>({
     resolver: zodResolver(questionnaireSchema),
@@ -89,29 +94,52 @@ export default function RetirementQuestionnaire() {
   }
 
   const onSubmit = async (data: QuestionnaireData) => {
-    setIsSubmitting(true)
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+    
     try {
+      // Structure the data to match the API expectations
+      const formData = {
+        email: data.personalInfo.email,
+        firstName: data.personalInfo.firstName,
+        lastName: data.personalInfo.lastName,
+        // Add other fields as needed
+        ...data
+      };
+
       const response = await fetch('/api/questionnaire', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
-      })
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
 
       if (!response.ok) {
-        throw new Error('Failed to submit questionnaire')
+        throw new Error(result.message || 'Failed to submit questionnaire');
       }
-
-      // Handle success
-      setActiveStep(steps.length)
+      
+      if (result.success) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Thank you for submitting your questionnaire! We will review your responses and get back to you shortly.'
+        });
+        setActiveStep(steps.length);
+      } else {
+        throw new Error(result.message || 'Failed to submit questionnaire');
+      }
     } catch (error) {
-      console.error('Error submitting questionnaire:', error)
-      // Handle error
+      console.error('Error submitting questionnaire:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'An error occurred while submitting the questionnaire. Please try again.'
+      });
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const renderStepContent = (step: number) => {
     switch (step) {
@@ -314,6 +342,15 @@ export default function RetirementQuestionnaire() {
         <Typography variant="body1" paragraph align="center">
           Take our 3-minute questionnaire to receive a complimentary retirement financial plan and tax strategy.
         </Typography>
+
+        {submitStatus.type && (
+          <Alert 
+            severity={submitStatus.type} 
+            sx={{ mb: 3 }}
+          >
+            {submitStatus.message}
+          </Alert>
+        )}
 
         <Stepper activeStep={activeStep} sx={{ mt: 4, mb: 6 }}>
           {steps.map((label) => (

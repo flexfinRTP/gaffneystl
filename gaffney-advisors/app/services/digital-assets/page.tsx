@@ -1,77 +1,75 @@
 'use client'
 
 import { Container, Typography, Box, Grid, useTheme } from '@mui/material'
-import { motion, LazyMotion, domAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { CurrencyBitcoin, Security, TrendingUp, AccountBalance } from '@mui/icons-material'
 import Image from 'next/image'
 
-const MotionBox = motion(Box)
+const MotionBox = motion.create(Box)
 
 export default function DigitalAssetsPage() {
   const theme = useTheme()
 
   return (
-    <LazyMotion features={domAnimation}>
-      <Box
-        sx={{
-          bgcolor: theme.palette.primary.dark,
-          color: theme.palette.common.white,
-          py: { xs: 8, md: 12 },
-          position: 'relative',
-          '&::after': {
-            content: '""',
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: '100%',
-            background: `linear-gradient(to bottom, ${theme.palette.primary.dark}CC, ${theme.palette.primary.dark}FF)`,
-            zIndex: 1,
-          },
-        }}
-      >
-        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
-          <MotionBox
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+    <Box
+      sx={{
+        bgcolor: theme.palette.primary.dark,
+        color: theme.palette.common.white,
+        py: { xs: 8, md: 12 },
+        position: 'relative',
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '100%',
+          background: `linear-gradient(to bottom, ${theme.palette.primary.dark}CC, ${theme.palette.primary.dark}FF)`,
+          zIndex: 1,
+        },
+      }}
+    >
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
+        <MotionBox
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Typography
+            variant="h1"
+            sx={{
+              fontFamily: 'Playfair Display',
+              fontSize: { xs: '2.5rem', md: '3.5rem' },
+              fontWeight: 700,
+              mb: 2,
+              position: 'relative',
+              '&::after': {
+                content: '""',
+                position: 'absolute',
+                bottom: '-12px',
+                left: 0,
+                width: '60px',
+                height: '4px',
+                background: `linear-gradient(to right, ${theme.palette.secondary.main}, ${theme.palette.secondary.light})`,
+                borderRadius: '2px',
+              },
+            }}
           >
-            <Typography
-              variant="h1"
-              sx={{
-                fontFamily: 'Playfair Display',
-                fontSize: { xs: '2.5rem', md: '3.5rem' },
-                fontWeight: 700,
-                mb: 2,
-                position: 'relative',
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
-                  bottom: '-12px',
-                  left: 0,
-                  width: '60px',
-                  height: '4px',
-                  background: `linear-gradient(to right, ${theme.palette.secondary.main}, ${theme.palette.secondary.light})`,
-                  borderRadius: '2px',
-                },
-              }}
-            >
-              Digital Assets Advisory
-            </Typography>
-            <Typography
-              variant="h4"
-              sx={{
-                color: theme.palette.grey[100],
-                fontSize: { xs: '1.25rem', md: '1.5rem' },
-                maxWidth: '800px',
-                mt: 4,
-              }}
-            >
-              Expert guidance for Bitcoin, stablecoin yield strategies, and cryptocurrency investments in St. Louis, MO.
-            </Typography>
-          </MotionBox>
-        </Container>
-      </Box>
+            Digital Assets Advisory
+          </Typography>
+          <Typography
+            variant="h4"
+            sx={{
+              color: theme.palette.grey[100],
+              fontSize: { xs: '1.25rem', md: '1.5rem' },
+              maxWidth: '800px',
+              mt: 4,
+            }}
+          >
+            Expert guidance for Bitcoin, stablecoin yield strategies, and cryptocurrency investments in St. Louis, MO.
+          </Typography>
+        </MotionBox>
+      </Container>
 
       <Container maxWidth="lg" sx={{ py: { xs: 8, md: 12 } }}>
         <Grid container spacing={6}>
@@ -199,6 +197,6 @@ export default function DigitalAssetsPage() {
           </Grid>
         </Grid>
       </Container>
-    </LazyMotion>
+    </Box>
   )
 } 

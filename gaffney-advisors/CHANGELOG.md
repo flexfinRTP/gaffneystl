@@ -92,6 +92,12 @@ All notable changes to this project will be documented in this file.
 - Improved error handling and loading states in promotional banner
 - Added persistent banner state using localStorage
 - Positioned promotional banner below header with proper styling
+- Centralized Mailjet email utility with improved error handling and logging
+- Type-safe email sending functions for all email types
+- Better error messages and validation in email-related API routes
+- Implemented working Mailjet email utility based on proven reference code
+- Added formatting utilities for dates and currency
+- Enhanced error logging and debugging for email sending
 
 ### Changed
 - Consolidated theme providers into a single theme configuration
@@ -148,6 +154,12 @@ All notable changes to this project will be documented in this file.
 - Standardized component props and interfaces
 - Enabled promotional banner in layout with dynamic import
 - Updated banner styling with subtle border and improved positioning
+- Refactored contact form, newsletter, and questionnaire email sending to use centralized utility
+- Improved error handling and response messages in email-related endpoints
+- Updated Mailjet API integration to use v3.1 consistently
+- Refactored Mailjet client initialization with lazy loading
+- Updated email sending to use string-formatted variables
+- Added comprehensive logging for email sending attempts and results
 
 ### Fixed
 - Resolved theme provider duplication
@@ -166,6 +178,9 @@ All notable changes to this project will be documented in this file.
 - TypeScript errors in form components
 - Form validation and error handling issues
 - Component prop type definitions
+- Fixed Mailjet email delivery issues by implementing proven working code
+- Resolved template variable formatting issues
+- Fixed client initialization and connection handling
 
 ### Removed
 - Removed framer-motion package and all related imports
