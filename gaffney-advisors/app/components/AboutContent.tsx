@@ -90,7 +90,7 @@ export default function AboutContent() {
             background: (theme) => `linear-gradient(135deg, ${theme.palette.secondary.light}, ${theme.palette.secondary.main})`,
             borderRadius: 4,
             overflow: "hidden",
-            boxShadow: 24,
+         
           }}
         >
           <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }}>

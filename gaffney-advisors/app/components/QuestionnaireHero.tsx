@@ -95,7 +95,7 @@ export default function QuestionnaireHero() {
                   variant="contained"
                   size="large"
                   onClick={() => setShowQuestionnaire(true)}
-                  
+                  disabled={true}
                   sx={{
                     backgroundColor: "#C4A052", // Rich Gold
                     color: "#FFFFFF", // Light Gray

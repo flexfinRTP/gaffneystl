@@ -2,7 +2,7 @@ import { Container, Typography, Box } from '@mui/material'
 
 export default function TermsOfService() {
   return (
-    <Container maxWidth="lg" sx={{ py: 10 }}>
+    <Container maxWidth="lg" sx={{ py: 10, pt: 32 }}>
       <Typography variant="h2" component="h1" gutterBottom>
         Terms of Service
       </Typography>
