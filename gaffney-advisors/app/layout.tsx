@@ -1,5 +1,6 @@
 import { Inter, Playfair_Display, Caveat } from 'next/font/google'
 import dynamic from 'next/dynamic'
+import { Analytics } from '@vercel/analytics/react'
 import ThemeRegistry from './theme-provider'
 import './globals.css'
 
@@ -190,6 +191,7 @@ export default function RootLayout({
           <main>{children}</main>
           {/* <PromotionalBanner /> */}
           <Footer />
+          <Analytics />
         </ThemeRegistry>
       </body>
     </html>
